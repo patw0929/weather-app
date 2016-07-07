@@ -9,6 +9,7 @@
     "lodash": "^4.13.1",
     "react": "^15.1.0",
     "react-native": "0.27.2",
+    "react-native-android-permissions": "0.0.6",
     "react-native-maps": "github:skellock/react-native-maps#friends-with-28"
   }
 }
