@@ -104,7 +104,11 @@ export default class AppWeather extends Component {
           initialRegion={this.state.pin}
           showsUserLocation={true}
           followsUserLocation={true}
-        ></MapView>
+        >
+          <MapView.Marker
+            coordinate={this.state.pin}
+          />
+        </MapView>
         <View style={styles.textWrapper}>
           <Text style={styles.text}>{this.state.city}</Text>
           <Text style={styles.text}>{this.state.temperature}°C</Text>
