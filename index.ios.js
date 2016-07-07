@@ -33,10 +33,8 @@ export default class AppWeather extends Component {
   watchID = undefined;
 
   componentWillMount() {
-    console.log('??????');
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        console.log(pos);
         this.setState({
           pin: {
             latitude: pos.coords.latitude,
@@ -73,7 +71,6 @@ export default class AppWeather extends Component {
   }
 
   onRegionChangeComplete(region) {
-    console.log(region);
     const { latitude, longitude, latitudeDelta, longitudeDelta } = region;
     this.setState({
       pin: {
