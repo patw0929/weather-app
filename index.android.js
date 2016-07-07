@@ -32,11 +32,10 @@ export default class AppWeather extends Component {
 
   watchID = undefined;
 
-  componentWillMount() {
+  componentDidMount() {
     console.log('??????');
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        console.log(pos);
         this.setState({
           pin: {
             latitude: pos.coords.latitude,
@@ -44,15 +43,15 @@ export default class AppWeather extends Component {
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA,
           },
+        }, () => {
+          this.onRegionChangeComplete(this.state.pin);
         });
-
-        this.callApi(pos.coords.latitude, pos.coords.longitude);
       },
       (error) => console.log(error),
       {
         enableHighAccuracy: true,
-        timeout: 20000,
-        maximumAge: 1000,
+        timeout: 200000,
+        maximumAge: 0,
       }
     );
 
@@ -101,7 +100,7 @@ export default class AppWeather extends Component {
         <MapView
           onRegionChangeComplete={(region) => { this.onRegionChangeComplete(region) }}
           style={styles.map}
-          initialRegion={this.state.pin}
+          region={this.state.pin}
           showsUserLocation={true}
           followsUserLocation={true}
         >
