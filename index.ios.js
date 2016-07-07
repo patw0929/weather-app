@@ -50,7 +50,7 @@ export default class AppWeather extends Component {
       {
         enableHighAccuracy: true,
         timeout: 20000,
-        maximumAge: 1000,
+        maximumAge: 0,
       }
     );
 
@@ -98,10 +98,14 @@ export default class AppWeather extends Component {
         <MapView
           onRegionChangeComplete={(region) => { this.onRegionChangeComplete(region) }}
           style={styles.map}
-          initialRegion={this.state.pin}
+          region={this.state.pin}
           showsUserLocation={true}
           followsUserLocation={true}
-        ></MapView>
+        >
+          <MapView.Marker
+            coordinate={this.state.pin}
+          />
+        </MapView>
         <View style={styles.textWrapper}>
           <Text style={styles.text}>{this.state.city}</Text>
           <Text style={styles.text}>{this.state.temperature}°C</Text>
